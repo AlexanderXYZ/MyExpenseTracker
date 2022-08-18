@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">My Expense Tracker</string>
+    <string name="default_welcome">Welcome!</string>
+    <string name="default_transactions_title">Transactions</string>
+    <string name="default_view_all">View All</string>
+
+    <string name="indicator_income">Income</string>
+    <string name="indicator_expenses">Expenses</string>
 </resources>
