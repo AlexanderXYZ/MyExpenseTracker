@@ -1,24 +1,24 @@
 package com.buslaev.myexpensetracker.presentation.root
 
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import com.buslaev.myexpensetracker.presentation.main.MainScreen
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import com.buslaev.myexpensetracker.presentation.theme.MyExpenseTrackerTheme
 
 @Composable
 fun RootApplication() {
-    val navController = rememberNavController()
+    val context = LocalContext.current
+    val applicationState = rememberApplicationState(context = context)
 
-    NavHost(navController = navController, startDestination = Screens.MainScreen.route) {
-        composable(Screens.MainScreen.route) {
-            MainScreen(navController = navController)
-        }
-        composable(Screens.StatisticScreen.route) {
-
-        }
-        composable(Screens.TransactionScreen.route) {
-
+    MyExpenseTrackerTheme {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colors.background
+        ) {
+            NavHostApplication(applicationState = applicationState)
         }
     }
 }

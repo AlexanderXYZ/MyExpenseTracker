@@ -10,11 +10,11 @@ import com.buslaev.myexpensetracker.data.entities.CategoryEntity
 interface CategoryDao {
 
     @Query("SELECT * FROM category_entity")
-    fun getAllCategories(): List<CategoryEntity>
+    suspend fun getAllCategories(): List<CategoryEntity>
 
     @Insert
-    fun insertCategory(category: CategoryEntity)
+    suspend fun insertCategory(category: CategoryEntity)
 
     @Delete
-    fun deleteCategory(category: CategoryEntity)
+    suspend fun deleteCategory(category: CategoryEntity)
 }

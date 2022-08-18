@@ -3,9 +3,12 @@ package com.buslaev.myexpensetracker.di
 import android.content.Context
 import androidx.room.Room
 import com.buslaev.myexpensetracker.data.dao.CategoryDao
-import com.buslaev.myexpensetracker.data.dao.ExpensesDao
-import com.buslaev.myexpensetracker.data.dao.IncomeDao
+import com.buslaev.myexpensetracker.data.dao.TransactionDao
 import com.buslaev.myexpensetracker.data.database.AppDatabase
+import com.buslaev.myexpensetracker.domain.repository.CategoryRepository
+import com.buslaev.myexpensetracker.domain.repository.CategoryRepositoryImpl
+import com.buslaev.myexpensetracker.domain.repository.TransactionRepository
+import com.buslaev.myexpensetracker.domain.repository.TransactionRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,9 +35,15 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideExpensesDao(database: AppDatabase): ExpensesDao = database.expensesDao()
+    fun provideTransactionDao(database: AppDatabase): TransactionDao = database.transactionDao()
 
     @Singleton
     @Provides
-    fun provideIncomeDao(database: AppDatabase): IncomeDao = database.incomeDao()
+    fun provideCategoryRepository(dao: CategoryDao): CategoryRepository =
+        CategoryRepositoryImpl(dao)
+
+    @Singleton
+    @Provides
+    fun provideTransactionRepository(dao: TransactionDao): TransactionRepository =
+        TransactionRepositoryImpl(dao)
 }
